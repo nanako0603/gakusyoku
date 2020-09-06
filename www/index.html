@@ -1,0 +1,1561 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+ <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+ <script src="components/loader.js"></script>
+ <script src="lib/onsenui/js/onsenui.min.js"></script>
+ <link rel="stylesheet" href="components/loader.css">
+ <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+ <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+ <link rel="stylesheet" href="css/style.css">
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyCpRGAYo-kVvhYEeUfHNNgeTEq6YORU_P8&language=ja"></script>
+<script>
+ function calculate() 
+ {
+ var money= $("#money").val();
+ if(money >= 600)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そば、かつ丼、親子丼、定食、カレーライスが買えます"
+ }
+ else if(600>money && money>= 550)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そば、かつ丼、親子丼、定食が買えます";
+ }
+ else if(550>money && money>= 500)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そば、かつ丼、親子丼が買えます";
+ }
+ else if(500>money && money>= 400)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そば、かつ丼が買えます";
+ }
+ else if(400>money && money>= 350)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そばが買えます";
+ }
+ else if(350>money && money>= 300)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどん、肉そばが買えます";
+ }
+ else if(300>money && money>= 250)
+ {
+ var text = "おにぎり、素うどん、素そば、肉うどんが買えます";
+ }
+ else if(250>money && money>=190)
+ {
+ var text = "おにぎり、素うどん、素そばが買えます";
+ }
+ else if(190>money && money>= 100)
+ {
+ var text = "おにぎりが買えます";
+ }
+ else if(money < 100)
+ {
+ var text = "何も買えません";
+ }
+ $("#result").text(text);
+ }
+ </script>
+ <script>
+    "use strict";
+    var url = "https://maps.google.co.jp/maps";
+    var param = {
+        center: { lat: 35.6811673, lng: 139.7670516 },
+        zoom: 12,
+        lang: "ja"
+      };
+    document.addEventListener('show', function(event) {
+      var page = event.target;
+      if (page.matches('#supa-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map1");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var paru = new google.maps.LatLng(34.252779,132.907067,21);
+        var yua = new google.maps.LatLng(34.243711, 132.885933);
+        var Options = {
+          zoom: 13,      //地図の縮尺値
+          center: paru,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: paru,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "フレスタ"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+        var marker2 = new google.maps.Marker({
+        position: yua,
+         map: map
+        });
+          var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "ユアーズ"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker2);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker2, "click", function(event) {
+      myInfoWindow.open(map, marker2);
+    });
+    });
+       }
+        if (page.matches('#insyoku-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map2");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var aru = new google.maps.LatLng(34.243557, 132.886507);
+        var toku = new google.maps.LatLng(34.243181, 132.885363);
+        var Options = {
+          zoom: 15,      //地図の縮尺値
+          center: aru,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: aru,
+         map: map
+        });
+          var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "アルファ"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+        var marker2 = new google.maps.Marker({
+        position: toku,
+         map: map
+        });
+                  var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "徳森"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker2);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker2, "click", function(event) {
+      myInfoWindow.open(map, marker2);
+    });
+    });
+      }
+      if (page.matches('#dorag-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map3");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var wan = new google.maps.LatLng(34.243581, 132.891206);
+        var Options = {
+          zoom: 15,      //地図の縮尺値
+          center: wan,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: wan,
+         map: map
+        });
+         var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "ウォンツ"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+      }  
+    if (page.matches('#kaisui-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map4");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var ookusi = new google.maps.LatLng(34.235615, 132.846358);
+        var noka = new google.maps.LatLng(34.213828, 132.918350);
+        var Options = {
+          zoom: 12,      //地図の縮尺値
+          center: ookusi,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: ookusi,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "大串海水浴場"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+        var marker2 = new google.maps.Marker({
+        position: noka,
+         map: map
+        });
+          var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "野賀海水浴場"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker2);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker2, "click", function(event) {
+      myInfoWindow.open(map, marker2);
+    });
+    });
+       }
+      if (page.matches('#onsen-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map5");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var seifukan = new google.maps.LatLng(34.215004, 132.919207);
+        var fureai = new google.maps.LatLng(34.228558, 132.865739);
+        var Options = {
+          zoom: 12,      //地図の縮尺値
+          center: seifukan,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: seifukan,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "清風館"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+        var marker2 = new google.maps.Marker({
+        position: fureai,
+         map: map
+        });
+          var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "ふれあいの館"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker2);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker2, "click", function(event) {
+      myInfoWindow.open(map, marker2);
+    });
+    });
+       }
+        if (page.matches('#yuuhi-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map6");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var yuhi = new google.maps.LatLng(34.259426, 132.907282);
+        var Options = {
+          zoom: 12,      //地図の縮尺値
+          center: yuhi,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: yuhi,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "商船の寮前"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+    if (page.matches('#umisima-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map7");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var naga = new google.maps.LatLng(34.254319, 132.877131);
+        var kan = new google.maps.LatLng(34.227121, 132.906965);
+        var Options = {
+          zoom: 13,      //地図の縮尺値
+          center: naga,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: naga,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "長島大橋"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });
+        var marker2 = new google.maps.Marker({
+        position: kan,
+         map: map
+        });
+          var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "神峰山 展望台"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker2);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker2, "click", function(event) {
+      myInfoWindow.open(map, marker2);
+    });
+    });
+       }
+     if (page.matches('#ryo-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map8");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var ryo = new google.maps.LatLng(34.258947, 132.908130);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: ryo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: ryo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "学生寮(男子棟)"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+        if (page.matches('#zyo-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map9");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.258546, 132.908180);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "学生寮(女子棟)"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+     if (page.matches('#hon-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map10");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253599, 132.903656);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "図書館"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+     if (page.matches('#den-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map11");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253399, 132.903103);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "電子棟"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+　　     if (page.matches('#ryutu-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map12");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253231, 132.903371);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "流通棟"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+    
+    
+  [昨日 13:18] 川本 愛
+    
+  
+  
+  
+    
+      
+      
+        C
+      
+    
+    
+    
+      if (page.matches('#sen-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map13");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253171, 132.903122);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "専攻科棟"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+     if (page.matches('#iti-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map14");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253628, 132.905006);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "第一体育館"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+     if (page.matches('#ni-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map15");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.253145, 132.902835);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "第二体育館"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+     if (page.matches('#tei-page')) {
+        var content = page.querySelector(".page__content");
+        var mapelem = content.querySelector("#map16");
+        // 地図表示枠の幅と高さを設定
+        mapelem.style.width = content.clientWidth.toString() + "px";
+        mapelem.style.height = content.clientHeight.toString() + "px";
+        var zyo = new google.maps.LatLng(34.254547, 132.903856);
+        var Options = {
+          zoom: 19,      //地図の縮尺値
+          center: zyo,    //地図の中心座標
+          mapTypeId: 'roadmap'   //地図の種類
+        };
+        var map = new google.maps.Map(mapelem, Options);
+         var marker1 = new google.maps.Marker({
+        position: zyo,
+         map: map
+        });
+        var myInfoWindow = new google.maps.InfoWindow({
+    // 吹き出しに出す文
+    content: "艇庫"
+  });
+  // 吹き出しを開く
+  myInfoWindow.open(map, marker1);
+  // 吹き出しが閉じられたら、マーカークリックで再び開くようにしておく
+  google.maps.event.addListener(myInfoWindow, "closeclick", function() {
+    google.maps.event.addListenerOnce(marker1, "click", function(event) {
+      myInfoWindow.open(map, marker1);
+    });
+    });        
+       }
+    });
+ </script>
+ <script>
+ // Page init event
+ document.addEventListener('init', function(event) {
+ var page = event.target;
+ if (page.matches('#first-page')) {
+  page.querySelector('#push-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page46.html');
+ };
+  page.querySelector('#push-button2').onclick = function() {
+ document.querySelector('#navigator').pushPage('page30.html');
+ };
+ page.querySelector('#push-button3').onclick = function() {
+ document.querySelector('#navigator').pushPage('page10.html');
+ };
+  page.querySelector('#push-button4').onclick = function() {
+ document.querySelector('#navigator').pushPage('page37.html');
+ };
+ page.querySelector('#push-button5').onclick = function() {
+ document.querySelector('#navigator').pushPage('page20.html');
+ };
+ page.querySelector('#push-button6').onclick = function() {
+ document.querySelector('#navigator').pushPage('page6.html');
+ };
+ page.querySelector('#push-button7').onclick = function() {
+ document.querySelector('#navigator').pushPage('page45.html');
+ };
+ page.querySelector('#push-button8').onclick = function() {
+ document.querySelector('#navigator').pushPage('page3.html');
+ };
+ }
+   if (page.matches('#third-page')) {
+ page.querySelector('#taimen-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page4.html');
+ };
+ page.querySelector('#enkaku-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page5.html');
+ };
+}
+ if (page.matches('#gakka-page')) {
+ page.querySelector('#ryu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page21.html');
+ };
+ page.querySelector('#zyou-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page22.html');
+ };
+}
+if (page.matches('#osusume-page')) {
+ page.querySelector('#supa-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page7.html');
+ };
+ page.querySelector('#insyoku-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page8.html');
+ };
+ page.querySelector('#dorag-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page9.html');
+ };
+ page.querySelector('#kaisui-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page23.html');
+ };
+ page.querySelector('#onsen-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page24.html');
+ };
+ page.querySelector('#yuuhi-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page25.html');
+ };
+ page.querySelector('#umi-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page26.html');
+ };
+ }
+if (page.matches('#bukatu-page')) {
+ page.querySelector('#saka-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page11.html');
+ };
+ page.querySelector('#yakyu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page12.html');
+ };
+ page.querySelector('#riku-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page13.html');
+ };
+ page.querySelector('#takyu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page14.html');
+ };
+ page.querySelector('#bare-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page15.html');
+ };
+ page.querySelector('#basu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page16.html');
+ };
+ page.querySelector('#kata-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page17.html');
+ };
+ page.querySelector('#zyuu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page18.html');
+ };
+ page.querySelector('#ken-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page19.html');
+ };
+}
+if (page.matches('#ryou-page')) {
+ page.querySelector('#dan-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page32.html');
+ };
+ page.querySelector('#zyosi-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page33.html');
+ };
+ page.querySelector('#syoku-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page34.html');
+ };
+ page.querySelector('#zimu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page35.html');
+ };
+  page.querySelector('#kaikan-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page36.html');
+ };
+ }
+ if (page.matches('#gyouzi-page')) {
+ page.querySelector('#nyuu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page38.html');
+ };
+ page.querySelector('#kura-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page39.html');
+ };
+ page.querySelector('#yuge-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page40.html');
+ };
+ page.querySelector('#kou-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page41.html');
+ };
+  page.querySelector('#m-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page42.html');
+ };
+  page.querySelector('#syousennsai-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page43.html');
+ };
+  page.querySelector('#cd-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page44.html');
+ };
+ }
+ if (page.matches('#sisetu-page')) {
+ page.querySelector('#dan-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page47.html');
+ };
+ page.querySelector('#zyo-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page48.html');
+ };
+ page.querySelector('#hon-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page49.html');
+ };
+ page.querySelector('#den-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page50.html');
+ };
+  page.querySelector('#ryutu-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page51.html');
+ };
+   page.querySelector('#sen-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page52.html');
+ };
+ page.querySelector('#iti-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page53.html');
+ };
+ page.querySelector('#ni-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page54.html');
+ };
+ page.querySelector('#tei-button').onclick = function() {
+ document.querySelector('#navigator').pushPage('page55.html');
+ };
+}
+ });
+ if (ons.platform.isIPhoneX()) {
+ document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+ document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+ }
+ </script>
+</head>
+<body>
+ <ons-navigator id="navigator" page="page1.html"></ons-navigator>
+ <ons-template id="page1.html">
+ <ons-page id="first-page">
+ <ons-toolbar>
+ <div class="center" style="text-align: left">HCMTintro.</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: left">
+ <p>広島商船や大崎上島のことが知れる</p>
+ <div class="block-title">機能一覧</div> 
+ <ons-button id="push-button" class="btn_arrow" style="text-align: left">学校施設の紹介</ons-button>
+ <ons-button id="push-button2" class="btn_arrow" style="text-align: left">寮の紹介</ons-button>
+ <ons-button id="push-button3" class="btn_arrow" style="text-align: left">部活動紹介</ons-button>
+ <ons-button id="push-button4" class="btn_arrow" style="text-align: left">学校行事</ons-button>
+ <ons-button id="push-button5" class="btn_arrow" style="text-align: left">学科紹介</ons-button>
+ <ons-button id="push-button6" class="btn_arrow" style="text-align: left">島のおすすめな場所</ons-button>
+ <ons-button id="push-button7" class="btn_arrow" style="text-align: left">学食</ons-button>
+ <ons-button id="push-button8" class="btn_arrow" style="text-align: left">時間割</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page10.html">
+ <ons-page id="bukatu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>部活紹介</p>
+ <ons-button id="saka-button"class="btn_arrow" style="text-align: left">サッカー</ons-button>
+ <ons-button id="yakyu-button"class="btn_arrow" style="text-align: left">野球部</ons-button>
+ <ons-button id="riku-button"class="btn_arrow" style="text-align: left">陸上部</ons-button>
+ <ons-button id="takyu-button"class="btn_arrow" style="text-align: left">卓球部</ons-button>
+ <ons-button id="bare-button"class="btn_arrow" style="text-align: left">バレー部</ons-button>
+ <ons-button id="basu-button"class="btn_arrow" style="text-align: left">バスケ部</ons-button>
+ <ons-button id="kata-button"class="btn_arrow" style="text-align: left">漕艇部</ons-button>
+ <ons-button id="zyuu-button"class="btn_arrow" style="text-align: left">柔道部</ons-button>
+ <ons-button id="ken-button"class="btn_arrow" style="text-align: left">剣道部</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page11.html">
+ <ons-page id="saka-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>サッカー部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>部員３０名。目標は久々の高専全国大会出場そして初戦突破。近くの高専や高校と試合しています。竹原サッカーリーグに加盟しています。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page12.html">
+ <ons-page id="yakyu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>野球部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+  <p>自主・研鑽をモットーに、自分たちで考えて試合をする「野球が好きな選手達」の集まりです。3年生の選手権大会で高校野球を卒業後は、「もっと野球が好きな選手達」が集まり、5年生の高専大会まで野球を楽しんでいます。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page13.html">
+ <ons-page id="riku-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>陸上部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>本校に入学して初めて競技を始めた者からある程度実績や経験を積んでいる者まで、それぞれの目標に向けて日々練習に取り組んでいます。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page14.html">
+ <ons-page id="takyu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>卓球部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>卓球部は高体連・日学連・高専関係・一般の大会等かなり多くの大会に参加しています。和気あいあいとしたクラブの雰囲気の中、"試合に勝つ"を目標に頑張っています。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page15.html">
+ <ons-page id="bare-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>バレー部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+  <p>練習は週４日ですが、限られた練習時間で１つでも多くの勝利を目標に頑張っています。未経験者もたくさんいますが、みんなで教え合って上達しています。男女ともに部員の仲が良いのがチームの特徴です。部員はみんな元気で明るく、とても活力に満ちた部活動です。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page16.html">
+ <ons-page id="basu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>バスケ部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>男子バスケ部は40名程度で、出場する試合によって１～３年生チームと、４～５年生中心チームに分かれますが、普段は学年に関係なく楽しく練習しています。女子バスケ部です。女子バスケ部は10名ほどで活動しています。少人数ですが、都合をやりくりして練習しています。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page17.html">
+ <ons-page id="kata-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>漕艇部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>私たち漕艇部は全国大会優勝を目標とし、部員一丸となって頑張っています。また、瀬戸内海という恵まれた環境で、季節を肌に感じながら仲間と共に成長できる海のスポーツです。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page18.html">
+ <ons-page id="zyuu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>柔道部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+  <p>高等学校体育連盟並びに高等専門学校体育連盟主催の試合(インターハイ関連、高専大会)に加え、全日本柔道連盟・呉地区柔道連盟に加盟し毎月実施される昇段試合・月次試合にも参加し、柔道の技と精神の鍛錬に励んでいます。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page19.html">
+ <ons-page id="ken-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>剣道部</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>剣道部は、週６日で稽古を行っています。高体連や高専の各種大会、他校への遠征、一般の大会にも参加し、技術と精神の向上に努めています。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page3.html">
+ <ons-page id="third-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>時間割</p>
+ <ons-button id="taimen-button"class="btn_arrow" style="text-align: left">対面授業</ons-button>
+ <ons-button id="enkaku-button"class="btn_arrow" style="text-align: left">遠隔授業</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page20.html">
+ <ons-page id="gakka-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>学科紹介(流通情報工学科)</p>
+ <ons-button id="ryu-button"class="btn_arrow" style="text-align: left">流通コース</ons-button>
+ <ons-button id="zyou-button"class="btn_arrow" style="text-align: left">情報コース</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page21.html">
+ <ons-page id="ryuu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>流通コース</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>流通・ビジネス系では、物流、会計、経営、市場、管理などのビジネス分野の専門知識・技術を身につけます。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page22.html">
+ <ons-page id="zyou-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>情報コース</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>情報系では、ソフトウェア、システム、ネットワークなど、情報分野の専門知識・技術を身につけます。</p>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page4.html">
+ <ons-page id="four-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+<div class="content" style="text-align: center">
+ <p>This is the second page.</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page5.html">
+ <ons-page id="four-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>This is the second page.</p>
+ <img src="https://publicdomainq.net/images/201710/03s/publicdomainq-0013980.jpg"  width="193" height="130"> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page6.html">
+ <ons-page id="osusume-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>島のおすすめな場所</p>
+ <p>お店</p>
+ <ons-button id="supa-button"class="btn_arrow" style="text-align: left">スーパー</ons-button>
+ <ons-button id="insyoku-button"class="btn_arrow" style="text-align: left">飲食店</ons-button>
+ <ons-button id="dorag-button"class="btn_arrow" style="text-align: left">ドラッグストア</ons-button>
+ <p>遊び、レジャースポット</p>
+ <ons-button id="kaisui-button"class="btn_arrow" style="text-align: left">海水浴場</ons-button>
+ <ons-button id="onsen-button"class="btn_arrow" style="text-align: left">温泉</ons-button>
+ <p>絶景スポット</p>
+ <ons-button id="yuuhi-button"class="btn_arrow" style="text-align: left">夕日</ons-button>
+ <ons-button id="umi-button"class="btn_arrow" style="text-align: left">海と島が見渡せる</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page7.html">
+ <ons-page id="supa-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>スーパー</p>
+ <div id="map1"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page8.html">
+ <ons-page id="insyoku-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>飲食店</p>
+ <div id="map2"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page9.html">
+ <ons-page id="dorag-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>ドラッグストア</p>
+ <div id="map3"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page8.html">
+ <ons-page id="insyoku-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>飲食店</p>
+ <div id="map2"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page23.html">
+ <ons-page id="kaisui-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>海水浴場</p>
+ <div id="map4"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page24.html">
+ <ons-page id="onsen-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>温泉</p>
+ <div id="map5"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page25.html">
+ <ons-page id="yuuhi-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>夕日</p>
+ <div id="map6"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page26.html">
+ <ons-page id="umisima-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>海と島が見渡せる</p>
+ <div id="map7"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page30.html">
+ <ons-page id="ryou-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>施設一覧</p>
+ <ons-button id="dan-button"class="btn_arrow" style="text-align: left">男子寮</ons-button>
+ <ons-button id="zyosi-button"class="btn_arrow" style="text-align: left">女子寮</ons-button>
+ <ons-button id="syoku-button"class="btn_arrow" style="text-align: left">食堂</ons-button>
+ <ons-button id="zimu-button"class="btn_arrow" style="text-align: left">寮事務</ons-button>
+ <ons-button id="kaikan-button"class="btn_arrow" style="text-align: left">若潮会館</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page32.html">
+ <ons-page id="dan-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>男子寮</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>男子棟は１棟・３棟・４棟・５棟と合計４つの棟があり、１人部屋と２人部屋があります。</p> 
+ <p>男子寮の中には捕食談話室・図書室・洗濯室などがあります。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page33.html">
+ <ons-page id="zyosi-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>女子寮</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>女子寮は棟が１つですが１棟に少し女子部屋があります。</p> 
+<p>女子寮の中には捕食談話室・図書室・洗濯室などがあります。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page34.html">
+ <ons-page id="syoku-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>食堂</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>食堂は学年ごとに机がありみんなで仲良く食べています。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page35.html">
+ <ons-page id="zimu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>寮事務</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>寮事務は主に郵便物を引き取ったり外泊届等の書類を提出したり、他にも救急ボックスやチャリの空気入れなどが置いてあります。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page36.html">
+ <ons-page id="kaikan-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>若潮会館</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+  <p>若潮会館は主に長期休暇の際に部活をしている学生が泊まれる合宿所です。捕食談話室や浴室等があります。</p> 
+  <p>長期期間以外にも茶道部や書道部が活動できる場でもあります。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page37.html">
+ <ons-page id="gyouzi-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>行事一覧</p>
+ <ons-button id="nyuu-button"class="btn_arrow" style="text-align: left">入学式</ons-button>
+ <ons-button id="kura-button"class="btn_arrow" style="text-align: left">クラスマッチ</ons-button>
+ <ons-button id="yuge-button"class="btn_arrow" style="text-align: left">弓削戦</ons-button>
+ <ons-button id="kou-button"class="btn_arrow" style="text-align: left">高専大会</ons-button>
+ <ons-button id="m-button"class="btn_arrow" style="text-align: left">商船学科卒業式</ons-button>
+ <ons-button id="syousennsai-button"class="btn_arrow" style="text-align: left">商船祭</ons-button>
+ <ons-button id="cd-button"class="btn_arrow" style="text-align: left">電子・流通情報工学科卒業式</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page38.html">
+ <ons-page id="kaikan-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>入学式</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>新しく入った新入生を迎えるにあたって入学式と入寮式が開かれます。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page39.html">
+ <ons-page id="kaikan-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>入学式</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>新しく入った新入生を迎えるにあたって入学式と入寮式が開かれます。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page38.html">
+ <ons-page id="nyuu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>入学式</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>新しく入った新入生を迎えるにあたって入学式と入寮式が開かれます。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page39.html">
+ <ons-page id="kura-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>クラスマッチ</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>クラス対抗で色々な競技で競い順位ポイントの合計でクラス１位を決めるイベントです。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page40.html">
+ <ons-page id="yuge-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>弓削戦</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>愛媛の弓削商船と毎年各部活が試合をして親睦を深めています。</p> 
+ <p>弓削へ行くときは広島丸に乗って行きます。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page41.html">
+ <ons-page id="kou-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>高専大会</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>中国地方の高専が集まって試合をします。全国高専出場枠に入れたら全国高専大会に出場できます。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page42.html">
+ <ons-page id="m-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>商船学科卒業式</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+<p>夏休みにある商船学科（M6?）の卒業式があります。白い服の姿はかっこいいです</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page43.html">
+ <ons-page id="syousennsai-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>商船祭</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>秋に毎年商船祭が開かれます。イベントがあったり、各部活で露店があります</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page44.html">
+ <ons-page id="cd-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>電子・流通情報工学科卒業式</p>
+ <img src="https://lh3.googleusercontent.com/proxy/Oqt03STKY67-Qbz-L29JAh7Uh8DsiXfgcMtoc7PvB9Mh2k-pVjwg3-lUWZGKemnDJXIBMSd1qydjw0vxNto7ep4gLLVHM8ovP7gmzyz_"  width="193" height="130"> 
+ <p>３月に電子と流通の学科５年生の卒業式があります。</p> 
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page45.html">
+ <ons-page id="gakusyoku-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>学食</p>
+<section data-role="content">
+ 金額
+ <input type="text" id="money" class="input-text">
+ <a class="button" onclick="calculate();">判定</a>
+ <span id="result"></span>
+ </section>  
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page46.html">
+ <ons-page id="sisetu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 1</ons-back-button></div>
+ <div class="center">Page 2</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>施設一覧</p>
+ <ons-button id="dan-button"class="btn_arrow" style="text-align: left">学生寮(男子寮)</ons-button>
+ <ons-button id="zyo-button"class="btn_arrow" style="text-align: left">学生寮(女子寮)</ons-button>
+ <ons-button id="hon-button"class="btn_arrow" style="text-align: left">図書館</ons-button>
+ <ons-button id="den-button"class="btn_arrow" style="text-align: left">電子棟</ons-button>
+ <ons-button id="ryutu-button"class="btn_arrow" style="text-align: left">流通棟</ons-button>
+ <ons-button id="sen-button"class="btn_arrow" style="text-align: left">専攻科棟</ons-button>
+ <ons-button id="iti-button"class="btn_arrow" style="text-align: left">第一体育館</ons-button>
+ <ons-button id="ni-button"class="btn_arrow" style="text-align: left">第二体育館</ons-button> 
+ <ons-button id="tei-button"class="btn_arrow" style="text-align: left">艇庫</ons-button>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page47.html">
+ <ons-page id="ryo-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>学生寮(男子寮)</p>
+ <div id="map8"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+<ons-template id="page48.html">
+ <ons-page id="zyo-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>学生寮(女子寮)</p>
+ <div id="map9"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page49.html">
+ <ons-page id="hon-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>図書館</p>
+ <div id="map10"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page50.html">
+ <ons-page id="den-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>電子棟</p>
+ <div id="map11"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page51.html">
+ <ons-page id="ryutu-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>流通棟</p>
+ <div id="map12"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page52.html">
+ <ons-page id="sen-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>専攻科棟</p>
+ <div id="map13"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page53.html">
+ <ons-page id="iti-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>第一体育館</p>
+ <div id="map14"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page54.html">
+ <ons-page id="ni-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>第二体育館</p>
+ <div id="map15"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+ <ons-template id="page55.html">
+ <ons-page id="tei-page">
+ <ons-toolbar>
+ <div class="left"><ons-back-button>Page 2</ons-back-button></div>
+ <div class="center">Page 3</div>
+ </ons-toolbar>
+ <div class="content" style="text-align: center">
+ <p>艇庫</p>
+ <div id="map16"></div>
+ <iframe frameborder="0"></iframe>
+ </div>
+ </ons-page>
+ </ons-template>
+</body>
+</html>

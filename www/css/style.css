@@ -1,0 +1,41 @@
+ .center{
+  background-color: #3388dd;
+  font-size: 20px;
+  color:cornsilk;
+}
+.btn_arrow {
+    display: table;
+    position: relative;
+    padding: 1em 2.5em;
+    min-width: 16em;
+    border: 2px solid currentColor;
+    color: #3388dd;
+    background-color: #f3f3f3;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+.btn_arrow::after {
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    width: 0.5em;
+    height: 0.5em;
+    transform: translateY(-50%) rotate(45deg);
+    border-right: 2px solid currentColor;
+    border-top: 2px solid currentColor;
+    content: "";
+}
+.btn_arrow:hover {
+    border: 2px solid #3388dd;
+    background-color: #3388dd;
+    color: #fff;
+}
+    
+    
+  
+  
+
